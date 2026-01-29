@@ -1,17 +1,17 @@
-use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+use std::env;
 
-#[get("/")]
-async fn hello() -> impl Responder {
-    return HttpResponse::Ok().body("Hello world!");
+use diesel::prelude::*;
+use dotenvy::dotenv;
+
+fn db_connect() -> PgConnection {
+    dotenv().ok();
+
+    let url = env::var("DATABASE_URL").expect("Database url in env must be set");
+    PgConnection::establish(&url).unwrap_or_else(|_| panic!("Error connecting to {url}"))
 }
 
 
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    HttpServer::new(||
-        App::new()
-            .service(hello)
-    ).bind(("0.0.0.0", 8080))?
-    .run()
-    .await
-}
+fn main(){
+    println!("hello, world!");
+    db_connect();
+}   
