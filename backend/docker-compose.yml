@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:alpine
+    env_file:
+      - .env
+    networks:
+      - locomote
+
+  app:
+    build: ./Dockerfile
+    env_file:
+      - .env
+    networks:
+      - locomote
+networks:
+  locomote:
+    driver: bridge
