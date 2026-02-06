@@ -10,7 +10,7 @@ diesel::table! {
 }
 
 diesel::table! {
-    scannner (id) {
+    scanner (id) {
         id -> Int4,
         scanner_id -> Int4,
     }
@@ -48,4 +48,4 @@ diesel::table! {
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(card, scannner, ticket, user, useraccount,);
+diesel::allow_tables_to_appear_in_same_query!(card, scanner, ticket, user, useraccount,);
