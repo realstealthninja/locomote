@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS "card";
+DROP TABLE IF EXISTS "useraccount";
+DROP TABLE IF EXISTS "scanner";
+DROP TABLE IF EXISTS "user";
+DROP TABLE IF EXISTS "ticket";
