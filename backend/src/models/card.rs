@@ -8,5 +8,6 @@ pub struct Card {
     pub id: i32,
     pub card_id: i32,
     pub user_id: i32,
+    pub disabled: bool,
     pub balance: f32
 }

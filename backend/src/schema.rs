@@ -5,6 +5,9 @@ diesel::table! {
         id -> Int4,
         card_id -> Int4,
         user_id -> Int4,
+        disabled -> Bool,
+        created_at -> Timestamp,
+        updated_at -> Timestamp,
         balance -> Float4,
     }
 }
@@ -23,9 +26,9 @@ diesel::table! {
         user_id -> Int4,
         origin -> Varchar,
         destination -> Varchar,
-        validity -> Time,
-        travel_date -> Date,
-        travel_time -> Time,
+        validity -> Timestamp,
+        travelling_at -> Timestamp,
+        created_at -> Timestamp,
         cost -> Float4,
     }
 }
@@ -35,7 +38,8 @@ diesel::table! {
         id -> Int4,
         user_id -> Varchar,
         username -> Varchar,
-        creation -> Int4,
+        created_at -> Timestamp,
+        updated_at -> Timestamp,
     }
 }
 

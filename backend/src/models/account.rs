@@ -6,8 +6,8 @@ use diesel::{Selectable, prelude::Queryable};
 #[diesel(table_name=crate::schema::useraccount)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Account {
-    id: i32,
-    user_id: i32,
-    username: String,
-    password_hash: String
+    pub id: i32,
+    pub user_id: i32,
+    pub username: String,
+    pub password_hash: String
 }
