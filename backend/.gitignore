@@ -1,4 +1,4 @@
 target/
 .env
-
+.diesel_lock
 db/**
