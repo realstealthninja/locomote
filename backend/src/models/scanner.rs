@@ -1,4 +1,5 @@
 use diesel::{Selectable, prelude::Queryable};
+use time::PrimitiveDateTime;
 
 
 #[derive(Queryable, Selectable)]
@@ -6,5 +7,7 @@ use diesel::{Selectable, prelude::Queryable};
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Scanner {
     pub id: i32,
-    pub scanner_id: i32
+    pub created_at: Option<PrimitiveDateTime>,
+    pub updated_at: Option<PrimitiveDateTime>
 }
+
