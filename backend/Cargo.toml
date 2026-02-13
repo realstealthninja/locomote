@@ -5,10 +5,9 @@ edition = "2024"
 
 [dependencies]
 axum = { version = "0.8.8", features = ["json", "macros", "tokio"] }
-deadpool-diesel = { version = "0.6.1", features = ["postgres"] }
-diesel = { version = "2.2.0", features = ["postgres", "serde_json", "time"] }
 dotenvy = "0.15"
 serde = { version = "1.0.228", features = ["derive"] }
+sqlx = { version = "0.8.6", features = ["migrate", "postgres", "runtime-tokio", "time"] }
 time = "0.3.47"
 tokio = { version = "1.49.0", features = ["sync", "macros", "rt-multi-thread"] }
 tracing-subscriber = "0.3.22"
