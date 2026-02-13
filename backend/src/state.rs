@@ -1,6 +1,8 @@
-use deadpool_diesel::postgres::Pool;
+use sqlx::{Pool, Postgres};
+
+
 
 #[derive(Clone)]
 pub struct AppState {
-    pub pool: Pool
+    pub pool: Pool<Postgres>
 }
