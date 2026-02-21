@@ -1,28 +1,54 @@
-use crate::models::user::{NewUser, create_user};
-use crate::state::AppState;
-use axum::{Json, extract::{self, State}};
-use serde::Serialize;
+use crate::{handlers::{card::CardResponse, user}, state::AppState};
+use axum::{
+    Json,
+    extract::{self, State},
+};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, sqlx::FromRow)]
 pub struct UserResponse {
     id: i32,
     username: String,
 }
 
+#[derive(Debug, Deserialize)]
+pub struct UserPost {
+    username: String,
+    password: String,
+    email: String,
+}
+
+
+#[derive(Debug, Serialize)]
+pub struct User {
+    id: i32,
+    username: String,
+    email: String,
+    cards: Vec<CardResponse>
+    
+}
 
 pub async fn post_user(
     State(state): State<AppState>,
-    extract::Json(new_user): extract::Json<NewUser>,
-) -> extract::Json<UserResponse>
-{
-    println!("POST: USER");
-    let user = create_user(&state.pool, new_user).await;
+    Json(userreq): Json<UserPost>,
+) -> Json<UserResponse> {
+    let user = sqlx::query_as::<_, UserResponse>(
+        "INSERT INTO usr (username, email, password) VALUES ($1, $2, $3) RETURNING id, username",
+    )
+    .bind(userreq.username)
+    .bind(userreq.email)
+    .bind(userreq.password)
+    .fetch_one(&state.pool)
+    .await
+    .expect("Could not insert into database");
 
-    Json(UserResponse {
-        id: user.id,
-        username: user.username
-    })
+    Json(user)
 }
+
+
+
+
+
 
 pub async fn delete_user() {}
 
