@@ -4,7 +4,7 @@ mod state;
 
 use std::env;
 use dotenvy::dotenv;
-use sqlx::postgres::PgPoolOptions;
+use sqlx::{postgres::PgPoolOptions};
 
 use crate::{routes::router, state::AppState};
 
@@ -19,6 +19,9 @@ async fn main() -> Result<(), std::io::Error>{
     let pool = PgPoolOptions::new().connect(&db_url).await
                             .expect("Couldnt connect to db");
 
+    sqlx::migrate!().run(&pool).await
+                            .expect("Couldnt migrate database");
+                        
     let app_state = AppState{pool};
     let router = router(app_state);
 
