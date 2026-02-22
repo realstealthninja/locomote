@@ -16,6 +16,18 @@ services:
       - "8080:8080"
     networks:
       - locomote
+  postgres-admin:
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - postgres
+    ports:
+      - "5050:80"
+    networks:
+      - locomote
+    env_file:
+      - .env
+
+   
 networks:
   locomote:
     driver: bridge
