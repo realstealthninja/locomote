@@ -4,6 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-axum = "0.8.8"
-diesel = { version = "2.2.0", features = ["postgres"]}
+axum = { version = "0.8.8", features = ["json", "macros", "tokio"] }
 dotenvy = "0.15"
+serde = { version = "1.0.228", features = ["derive"] }
+sqlx = { version = "0.8.6", features = ["migrate", "postgres", "runtime-tokio", "time"] }
+sqlx-cli = "0.8.6"
+time = "0.3.47"
+tokio = { version = "1.49.0", features = ["sync", "macros", "rt-multi-thread"] }
+tracing-subscriber = "0.3.22"
