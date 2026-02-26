@@ -5,6 +5,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+
+
 class Scanner(models.Model):
     location = models.CharField(max_length=200)
     cost = models.FloatField(null=True)
@@ -18,7 +20,7 @@ class Card(models.Model):
 
     balance = models.FloatField()
 
-    def of_user(self, user: User) -> list[Card]:
+    def of_user(self, user: User):
         return self.user == user
 
 

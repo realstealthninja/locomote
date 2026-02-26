@@ -1,4 +1,3 @@
-from dataclasses import field
 from typing import override
 from django.contrib.auth.models import User
 from rest_framework import serializers
@@ -30,7 +29,11 @@ class CardSerializer(serializers.ModelSerializer):
         model = Card
         field = "__all__"
 
-
+class TicketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ticket
+        field = "__all__"
+        
 class UserRegistrationSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={"input_type": "password"}, write_only=True)
 

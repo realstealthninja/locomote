@@ -1,15 +1,13 @@
 
 
-#include <WiFi.h>
-
 #include <stdint.h>
 #include <ArduinoJson.h>
 #include <WebSocketsClient.h>
 
 
-const char* ssid = "moto g45 5G_2361";
-const char* password = "";
-const char* server = "ws://10.0.0.1";
+const char* ssid = "Weaboo's S25 Ultra";
+const char* password = "12345678:)";
+const char* server = "ws://10.70.160.13/ws/registrar";
 
 WebSocketsClient webSocket;
 
@@ -23,7 +21,7 @@ void webSocketEvent(WStype_t type, uint8_t* payload, size_t length) {
       Serial.println("Disconnected from WebSocket server");
       break;
     case WStype_TEXT:
-      Serial.printf("Received text message: %s\n", payload);
+      Serial.printf("Received text message: %s\n", payload);        
       break;
     case WStype_PONG:
       Serial.println("Received PONG");

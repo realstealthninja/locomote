@@ -13,7 +13,6 @@ class Reader {
 
   bool has_card = false;
 public:
-  Reader();
   void loop() {
     if (!mfrc522.PICC_IsNewCardPresent()) {
       return;
@@ -73,4 +72,4 @@ public:
   void stop_card() {
     mfrc522.PICC_HaltA();
   }
-}
+};
